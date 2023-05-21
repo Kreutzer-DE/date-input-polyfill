@@ -1,0 +1,1 @@
+export default function addPickerToInputs(dateInputs: HTMLElement[]): void;

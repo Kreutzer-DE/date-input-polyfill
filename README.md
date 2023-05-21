@@ -57,6 +57,16 @@ include it anywhere in your HTML.
 <script src="node_modules/configurable-date-input-polyfill/dist/configurable-date-input-polyfill.dist.js"></script>
 ```
 
+* **ES modules:**
+```js
+import supportsDateInput from 'configurable-date-input-polyfill/src';
+
+if (!supportsDateInput()) {
+  import('configurable-date-input-polyfill/src/add-picker')
+    .then(({ default: addPickerToInputs }) => addPickerToInputs([yourInputElement]));
+}
+```
+
 
 * This package supports **AMD**.
 
