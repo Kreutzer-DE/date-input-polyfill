@@ -41,6 +41,7 @@ date-input-polyfill {
       position: relative;
       line-height: 15px;
       font-size: 13px;
+      color: $font-color;
 
       &.active:after {
         content: "<";
