@@ -1,374 +1,428 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Polyfill Datepicker Demo</title>
-    <meta name="description" content="Polyfill Demo">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <link rel="shortcut icon" type="image/x-icon" href="favicons/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <meta name="description" content="Polyfill Demo" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"
+    />
+    <link rel="shortcut icon" type="image/x-icon" href="favicons/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicons/favicon-16x16.png"
+    />
     <style>
-        body {
-            position: relative;
-            background-color: #a2d8f6;
-            font-family: Arial, Helvetica, sans-serif;
-            padding: 15px;
-        }
+      :root {
+        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+        line-height: 1.5;
+        font-weight: 400;
 
-        input {
-            width: 100%;
-        }
+        color-scheme: light dark;
+        color: rgba(255, 255, 255, 0.87);
+        background-color: #242424;
 
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        padding: 0 10%;
+      }
+
+      input {
+        width: 100%;
+        font-size: 20px;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 2px 2px 2px #000000;
+        color: #a2d8f6;
+        word-wrap: Break-Word;
+        margin-bottom: 30px;
+      }
+
+      h2 {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .catchphrase {
+        margin: 0;
+      }
+
+      .preview-wrapper {
+        margin: 70px 0 70px 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      .basic-example {
+        font-size: 32px;
+        text-align: center;
+        border: solid 3px #a2d8f6;
+        box-shadow: 0 2px 4px #000000;
+        outline: none;
+      }
+
+      .downloads-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-direction: column;
+      }
+
+      .examples-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .example-container {
+        width: 100%;
+        margin-bottom: 50px;
+      }
+
+      .example-container > p {
+        text-align: center;
+      }
+
+      .example p {
+        font-size: 18px;
+        margin-bottom: 2px;
+        margin-top: 10px;
+      }
+
+      .button {
+        min-width: 100%;
+        min-height: 90px;
+        border: solid 1px black;
+        font-size: 54px;
+        text-align: center;
+        line-height: 75px;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+
+      .download {
+        background-color: #ffffff;
+        color: #a2d8f6;
+      }
+
+      .npm {
+        background-color: #cc3534;
+        border: solid 1px #cc3534;
+        color: #ffffff;
+      }
+
+      .information {
+        color: #721c24;
+        background-color: #f8d7da;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid #f5c6cb;
+        border-radius: 0.25rem;
+      }
+
+      .information p {
+        margin: 0;
+      }
+
+      .back {
+        background-color: transparent;
+        border: 0;
+        padding: 0;
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+
+      @media (min-width: 768px) {
         h1 {
-            font-size: 60px;
-            font-weight: bold;
-            text-align: center;
-            text-shadow: 2px 2px 2px #000000;
-            color: white;
-            word-wrap: Break-Word;
-            margin-bottom: 30px;
+          font-size: 60px;
         }
 
         h2 {
-            font-size: 26px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .example-container {
-            height: 100%;
-            background-color: white;
-            border: solid 1px black;
-            padding: 30px;
-        }
-
-        .example-container p {
-            text-align: center;
-        }
-
-        .col {
-            margin-bottom: 30px;
-        }
-
-        .example-row {
-            margin-bottom: 10px;
+          font-size: 26px;
         }
 
         .button {
-            min-width: 325px;
-            min-height: 90px;
-            border: solid 1px black;
-            font-size: 60px;
-            text-align: center;
-            line-height: 75px;
-            font-weight: bolder;
+          min-width: 325px;
+          font-size: 60px;
         }
 
-        .download {
-            background-color: #ffffff;
-            color: #a2d8f6;
+        .catchphrase {
+          margin: 0 50px;
         }
 
-        .npm {
-            background-color: #cc3534;
-            border: solid 1px #cc3534;
-            color: #ffffff;
+        .basic-example {
+          width: 60%;
         }
 
-        .information {
-            border: solid 1px #f00;
+        .downloads-wrapper {
+          flex-direction: row;
         }
 
-        .information p {
-            margin: 0;
+        .example-container {
+          width: 50%;
+        }
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          color: #213547;
+          background-color: #f8f8f8;
         }
 
-        .back {
-            background-color: transparent;
-            border: 0;
-            padding: 0;
-            color: #ffffff;
-            font-size: 18px;
-            margin-bottom: 30px;
+        button {
+          background-color: #f9f9f9;
         }
+      }
     </style>
-</head>
+  </head>
 
-<body class="container-fluid">
+  <body>
     <h1>Configurable Date-Input-Polyfill DEMO</h1>
-    <h2>The last date-input polyfill you will ever need. A fancy and lightweight date input with a high number of
-        configuration options for all needs.</h2>
-    <div class="row">
-        <div class="col col-12 col-md-6 col-xl-4">
-            <div class="example-container">
-                <h2>Example Date-Input configuration</h2>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            Normal Input date (default):
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with default configuration" type="date" />
-                    </div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            With value:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with preset value" type="date" value="2015-03-28" />
-                    </div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            With format ("date-format"):
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with configured date format" type="date" date-format="mm/dd/yyyy" />
-                    </div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            Forcing Polyfill:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with configured date format" type="date" data-force-polyfill="true" />
-                    </div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            With localization:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with german local" type="date" lang="de" />
-                    </div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            With monday as first week day:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with monday as first week day" type="date" data-first-day="mo"
-                            data-force-polyfill="true" />
-                    </div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            With min and max configuration:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with configured min & max value" type="date" data-min="2008-03-01"
-                            data-max="2015-02-01" />
-                    </div>
-                </div>
-                <span>
-                    ...
-                </span>
-            </div>
-        </div>
-
-        <div class="col col-12 col-md-6 col-xl-4">
-            <div class="example-container">
-                <h2>Example Inputs with class configuration</h2>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            With type text & class (default):
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with default configuration" class="date-polyfill" type="text" />
-                    </div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            Text & class with value:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with preset value" class="date-polyfill" type="text" value="2020-03-28" />
-                    </div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            Text & class with format:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with configured date format" class="date-polyfill" type="text"
-                            date-format="mm/dd/yyyy" />
-                    </div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            Text & class with localization:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with french local" class="date-polyfill" type="text" lang="fr" />
-                    </div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            Text & class with monday as first week day:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with monday as first week day" class="date-polyfill" type="text"
-                            data-first-day="mo" />
-                    </div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            Text & class with a german configuration:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with german configuration" class="date-polyfill" type="text" lang="de"
-                            data-date-format="dd.mm.yyyy" data-first-day="mo" />
-                    </div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            Text & class with min and max value:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-5 example-input">
-                        <input title="with configured min & max value" class="date-polyfill" type="text"
-                            data-min="2008-03-01" data-max="2015-02-01" />
-                    </div>
-                </div>
-                <span>
-                    ...
-                </span>
-            </div>
-        </div>
-
-        <div class="col col-12 col-md-12 col-xl-4">
-            <div class="example-container">
-                <h2>Fancy dynamic examples</h2>
-                <p>(created after 2 sek)</p>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            Dynamically created date input:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-4 example-input" id="dynamic-example"></div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            Dynamic and forcing polyfill:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-4 example-input" id="dynamic-example-forcing"></div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            Dynamic with a german configuration:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-4 example-input" id="dynamic-example-german"></div>
-                </div>
-                <div class="row example-row">
-                    <div class="col-md-12 col-xl-7">
-                        <span>
-                            Dynamic with min and max:
-                        </span>
-                    </div>
-                    <div class="col-md-12 col-xl-4 example-input" id="dynamic-example-min-max"></div>
-                </div>
-                <span>
-                    ...
-                </span>
-            </div>
-        </div>
+    <h2 class="catchphrase">
+      The last date-input-polyfill you will ever need. A fancy and lightweight
+      date input with a high number of configuration options for all needs.
+    </h2>
+    <div class="preview">
+      <div class="preview-wrapper">
+        <input
+          class="basic-example"
+          placeholder="Click me.."
+          title="the basic example"
+          type="date"
+          data-force-polyfill="true"
+        />
+      </div>
     </div>
-    <div class="row">
-        <div class="col col-12 col-md-6 col-xl-4 text-center">
-            <button class="button download"
-                onclick="window.open('https://github.com/KreutzerCode/configurable-date-input-polyfill/archive/master.zip','_blank')">
-                Download
-            </button>
-        </div>
-        <div class="col col-12 col-md-6 col-xl-4 text-center">
-            <button class="button npm"
-                onclick="window.open('https://www.npmjs.com/package/configurable-date-input-polyfill','_blank')">
-                NPM
-            </button>
-        </div>
-        <div class="col col-12 col-md-12 col-xl-4">
-            <div class="information example-container">
-                <p>
-                    Note that some examples are replaced in modern browsers like Chrome and Firefox by an integrated
-                    datepicker.
-                    If you are viewing this demo from a modern browser, I recommend that you take a look at the "Example
-                    Inputs with class configuration" or reopen this page with Internet Explorer.
-                </p>
-            </div>
-        </div>
+    <div class="downloads-wrapper">
+      <button
+        class="button download"
+        onclick="window.open('https://github.com/KreutzerCode/configurable-date-input-polyfill/archive/master.zip','_blank')"
+      >
+        Download
+      </button>
+      <button
+        class="button npm"
+        onclick="window.open('https://www.npmjs.com/package/configurable-date-input-polyfill','_blank')"
+      >
+        NPM
+      </button>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <button class="back" onclick="history.back()">
-                Back
-            </button>
+    <h1>Examples</h1>
+    <div class="examples-wrapper">
+      <div class="example-container">
+        <h2>Date Input</h2>
+        <div class="information">
+          <p>
+            Modern browsers utilize their own date pickers for date inputs which
+            do not have the <b>forcing polyfill</b> property applied.
+          </p>
         </div>
+        <div class="example">
+          <p>Normal Input date (default):</p>
+          <input
+            id="default-configuration"
+            title="with default configuration"
+            type="date"
+          />
+        </div>
+        <div class="example">
+          <p>With value:</p>
+          <input title="with preset value" type="date" value="2015-03-28" />
+        </div>
+        <div class="example">
+          <p>With format ("date-format"):</p>
+          <input
+            title="with configured date format"
+            type="date"
+            date-format="mm/dd/yyyy"
+          />
+        </div>
+        <div class="example">
+          <p>Forcing Polyfill:</p>
+          <input
+            title="with configured date format"
+            type="date"
+            data-force-polyfill="true"
+          />
+        </div>
+        <div class="example">
+          <p>With localization:</p>
+          <input title="with german local" type="date" lang="de" />
+        </div>
+        <div class="example">
+          <p>With monday as first week day:</p>
+          <input
+            title="with monday as first week day"
+            type="date"
+            data-first-day="mo"
+            data-force-polyfill="true"
+          />
+        </div>
+        <div class="example">
+          <p>With min and max configuration:</p>
+          <input
+            title="with configured min & max value"
+            type="date"
+            data-min="2008-03-01"
+            data-max="2015-02-01"
+          />
+        </div>
+      </div>
+
+      <div class="example-container">
+        <h2>Text Input</h2>
+        <div class="example">
+          <p>With type text & class (default):</p>
+          <input
+            title="with default configuration"
+            class="date-polyfill"
+            type="text"
+          />
+        </div>
+        <div class="example">
+          <p>Text & class with value:</p>
+          <input
+            title="with preset value"
+            class="date-polyfill"
+            type="text"
+            value="2020-03-28"
+          />
+        </div>
+        <div class="example">
+          <p>Text & class with format:</p>
+          <input
+            title="with configured date format"
+            class="date-polyfill"
+            type="text"
+            date-format="mm/dd/yyyy"
+          />
+        </div>
+        <div class="example">
+          <p>Text & class with localization:</p>
+          <input
+            title="with french local"
+            class="date-polyfill"
+            type="text"
+            lang="fr"
+          />
+        </div>
+        <div class="example">
+          <p>Text & class with monday as first week day:</p>
+          <input
+            title="with monday as first week day"
+            class="date-polyfill"
+            type="text"
+            data-first-day="mo"
+          />
+        </div>
+        <div class="example">
+          <p>Text & class with a german configuration:</p>
+          <input
+            title="with german configuration"
+            class="date-polyfill"
+            type="text"
+            lang="de"
+            data-date-format="dd.mm.yyyy"
+            data-first-day="mo"
+          />
+        </div>
+        <div class="example">
+          <p>Text & class with min and max value:</p>
+          <input
+            title="with configured min & max value"
+            class="date-polyfill"
+            type="text"
+            data-min="2008-03-01"
+            data-max="2015-02-01"
+          />
+        </div>
+      </div>
+
+      <div class="example-container">
+        <h2>Dynamicly created Input</h2>
+        <p>(created after 2 sek)</p>
+        <div class="example">
+          <p>Dynamically created date input:</p>
+          <div class="example-input" id="dynamic-example"></div>
+        </div>
+        <div class="example">
+          <p>Dynamic and forcing polyfill:</p>
+          <div class="xample-input" id="dynamic-example-forcing"></div>
+        </div>
+        <div class="example">
+          <p>Dynamic with a german configuration:</p>
+          <div class="example-input" id="dynamic-example-german"></div>
+        </div>
+        <div class="example">
+          <p>Dynamic with min and max:</p>
+          <div class="example-input" id="dynamic-example-min-max"></div>
+        </div>
+      </div>
+    </div>
+    <div class="">
+      <div class="">
+        <button class="back" onclick="history.back()">Back</button>
+      </div>
     </div>
     <script>
-        setTimeout(function () {
-            var input = document.createElement("input");
-            input.setAttribute("type", "date");
-            document.getElementById("dynamic-example").appendChild(input);
+      setTimeout(function () {
+        const dynamicInput = document.createElement("input");
+        dynamicInput.setAttribute("type", "date");
+        document.getElementById("dynamic-example").appendChild(dynamicInput);
 
-            var input = document.createElement("input");
-            input.setAttribute("type", "date");
-            input.setAttribute("data-force-polyfill", "true");
-            document.getElementById("dynamic-example-forcing").appendChild(input);
+        const dynamicInputForcing = document.createElement("input");
+        dynamicInputForcing.setAttribute("type", "date");
+        dynamicInputForcing.setAttribute("data-force-polyfill", "true");
+        document
+          .getElementById("dynamic-example-forcing")
+          .appendChild(dynamicInputForcing);
 
-            var input = document.createElement("input");
-            input.setAttribute("type", "text");
-            input.setAttribute("lang", "de");
-            input.setAttribute("class", "date-polyfill");
-            input.setAttribute("date-format", "dd.mm.yyyy");
-            input.setAttribute("data-first-day", "mo");
-            input.setAttribute("data-force-polyfill", "true");
-            document.getElementById("dynamic-example-german").appendChild(input);
+        const dynamicInputGerman = document.createElement("input");
+        dynamicInputGerman.setAttribute("type", "text");
+        dynamicInputGerman.setAttribute("lang", "de");
+        dynamicInputGerman.setAttribute("class", "date-polyfill");
+        dynamicInputGerman.setAttribute("date-format", "dd.mm.yyyy");
+        dynamicInputGerman.setAttribute("data-first-day", "mo");
+        dynamicInputGerman.setAttribute("data-force-polyfill", "true");
+        document
+          .getElementById("dynamic-example-german")
+          .appendChild(dynamicInputGerman);
 
-            var input = document.createElement("input");
-            input.setAttribute("type", "date");
-            input.setAttribute("data-min", "2008-03-01");
-            input.setAttribute("data-max", "2015-02-01");
-            document.getElementById("dynamic-example-min-max").appendChild(input);
-        }, 2000);
+        const dynamicInputMinMax = document.createElement("input");
+        dynamicInputMinMax.setAttribute("type", "date");
+        dynamicInputMinMax.setAttribute("data-min", "2008-03-01");
+        dynamicInputMinMax.setAttribute("data-max", "2015-02-01");
+        document
+          .getElementById("dynamic-example-min-max")
+          .appendChild(dynamicInputMinMax);
+      }, 2000);
     </script>
     <script src="./dist/configurable-date-input-polyfill.dist.js"></script>
-</body>
-
+  </body>
 </html>
