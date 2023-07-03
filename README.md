@@ -1,7 +1,6 @@
 <div align="center">
     <h1>configurable-date-input-polyfill</h1>
 
-[![Build Status](https://travis-ci.com/KreutzerCode/configurable-date-input-polyfill.svg?branch=master)](https://travis-ci.com/github/KreutzerCode/configurable-date-input-polyfill)
 [![NPM version](https://badge.fury.io/js/configurable-date-input-polyfill.svg)](https://badge.fury.io/js/configurable-date-input-polyfill)
 [![All-time downloads](https://img.shields.io/npm/dm/configurable-date-input-polyfill.svg)](https://www.npmjs.com/package/configurable-date-input-polyfill)
 [![Monthly downloads](https://img.shields.io/npm/dt/configurable-date-input-polyfill.svg)](https://www.npmjs.com/package/configurable-date-input-polyfill)
