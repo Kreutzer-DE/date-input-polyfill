@@ -60,7 +60,7 @@ include it anywhere in your HTML.
 * This package supports **AMD**.
 
 ## Localization
-* You can easily set a specific locale for each date input. [The list of available languages](https://github.com/KreutzerCode/configurable-date-input-polyfill/blob/master/localisations.js) can easily be extended by your own.
+* You can easily set a specific locale for each date input. [The list of available languages](https://github.com/KreutzerCode/configurable-date-input-polyfill/blob/master/src/localisations.js) can easily be extended by your own.
 ```html
 <!--default dont need to be specified-->
 <input type="date" lang="en" />
