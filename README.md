@@ -19,7 +19,7 @@ Forked from [date-input-polyfill](https://github.com/jcgertig/date-input-polyfil
 
 ## Features
 
-* Easily Stylable. [These are the default styles](https://github.com/KreutzerCode/configurable-date-input-polyfill/blob/master/configurable-date-input-polyfill.scss),
+* Easily Stylable. [These are the default styles](https://github.com/KreutzerCode/configurable-date-input-polyfill/blob/master/src/configurable-date-input-polyfill.scss),
 which you may override with your own.
 * Accessibility friendly with Keyboard Shortcuts. Full arrow controls `Up/Down/Left/Right` to increment/decrement the selected date.
 `Esc` to hide the datepicker.
