@@ -4,3 +4,4 @@ node_modules/
 _config.yml
 index.html
 favicons/
+.git/
