@@ -125,7 +125,7 @@ include it anywhere in your HTML.
 ## Browser support
 #### Desktop
 * Chrome
-* Safari
+* Safari 7+
 * Firefox
 * Opera
 * Edge
