@@ -26,11 +26,11 @@ export class YearSelect extends DateSelect {
         this.yearArray = [];
         this.dateSelectWrapper.className = 'select-wrapper year-select';
 
-        /* start Function */
+        const optionElement = document.createElement('div');
+        optionElement.className = 'option';
+
         for (let i = 0; i < 5; i += 1) {
-            const option = document.createElement('div');
-            option.className = 'option';
-            this.optionWrapper.appendChild(option);
+            this.optionWrapper.appendChild(optionElement.cloneNode(true));
         }
 
         /* downClick Function */
@@ -92,28 +92,21 @@ export class MonthSelect extends DateSelect {
         this.selectedLocaleArray = [];
         this.monthArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
         this.dateSelectWrapper.className = 'select-wrapper month-select';
-        /* start Function */
-        for (let i = 0; i < 5; i += 1) {
-            const option = document.createElement('div');
-            option.className = 'option';
-            option.innerHTML = "s";
 
-            this.optionWrapper.appendChild(option);
+        const optionElement = document.createElement('div');
+        optionElement.className = 'option';
+
+        for (let i = 0; i < 5; i += 1) {
+            this.optionWrapper.appendChild(optionElement.cloneNode(true));
         }
 
-        /* downClick Function */
-        this.toggleDown.addEventListener('click', () => {
-            // update array order
-            this.monthArray.push(Number(this.monthArray.shift()));
-            this.redrawMonthSelect();
-        });
+        this.toggleDown.addEventListener('click', () => this.rotateMonthArray(1));
+        this.toggleUp.addEventListener('click', () => this.rotateMonthArray(-1));
+    }
 
-        /* upClick Function */
-        this.toggleUp.addEventListener('click', () => {
-            // update array order
-            this.monthArray.unshift(Number(this.monthArray.pop()));
-            this.redrawMonthSelect();
-        });
+    rotateMonthArray(offset) {
+        this.monthArray = this.rotate(this.monthArray, offset);
+        this.redrawMonthSelect();
     }
 
     setLocalLabels(localeLabels) {
@@ -129,18 +122,11 @@ export class MonthSelect extends DateSelect {
     }
 
     returnMonthStringArray(targetMonthIndex = null) {
-        const monthStringArray = [];
-        const localeArray = this.selectedLocaleArray;
-
-        if (targetMonthIndex || targetMonthIndex === 0) {
+        if (targetMonthIndex !== null) {
             return this.selectedLocaleArray[targetMonthIndex];
         }
 
-        this.monthArray.forEach((index) => {
-            monthStringArray.push(localeArray[index].substring(0, 3));
-        });
-
-        return monthStringArray;
+        return this.monthArray.map((index) => this.selectedLocaleArray[index].substring(0, 3));
     }
 
     toggleByInput(value) {
@@ -176,14 +162,9 @@ export class MonthSelect extends DateSelect {
     }
 
     rotate(array, times) {
-        let timesToRotate = times;
-        while (timesToRotate > 0) {
-            const temp = array.shift();
-            array.push(temp);
-            timesToRotate -= 1;
-        }
-
-        return array;
+        let count = times % array.length;
+        if (times < 0) count += array.length;
+        return array.concat(array.splice(0, count));
     }
 
     toggleByMatrix(mode) {
