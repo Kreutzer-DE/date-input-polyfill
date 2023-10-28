@@ -210,17 +210,12 @@ export function getDateRange(minAttribute, maxAttribute) {
 }
 
 export function getLocaleLabels(locale) {
-    let localeLabels = [];
-
-    Object.keys(Localisation).forEach((key) => {
-        const localeSet = key;
-        let localeList = localeSet.split('_');
-        localeList = localeList.map((el) => el.toLowerCase());
-        if (localeList.indexOf(locale) >= 0 || localeList.indexOf(locale.slice(0, 2)) >= 0) {
-            localeLabels = Localisation[localeSet];
-        }
+    const localeKey = Object.keys(Localisation).find((key) => {
+        const localeList = key.toLowerCase().split('_');
+        return localeList.includes(locale) || localeList.includes(locale.slice(0, 2));
     });
-    return localeLabels;
+
+    return localeKey ? Localisation[localeKey] : Localisation["en_en-US_en-UK"];
 }
 
 export function createMutationObserver(dateInputElement) {
